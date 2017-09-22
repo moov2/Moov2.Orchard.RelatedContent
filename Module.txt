@@ -7,6 +7,6 @@ OrchardVersion: 1.10.2
 Description: Adds realted content features
 Features:
     Moov2.Orchard.RelatedContent:
-		Name: Related Content
+        Name: Related Content
         Description: Adds a part which lets you specify related content items for a content item.
         Category: Content
