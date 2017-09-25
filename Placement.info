@@ -5,6 +5,11 @@
   
   <!-- available display shapes -->
   <!--
-  
+  Parts_RelatedContent_List
   -->
+  <Place Parts_RelatedContent_List="-"/>
+
+  <Match DisplayType="Detail">
+    <Place Parts_RelatedContent_List="">Content:10</Place>
+  </Match>
 </Placement>

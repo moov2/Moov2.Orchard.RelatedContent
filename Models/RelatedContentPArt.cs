@@ -10,6 +10,8 @@ namespace Moov2.Orchard.RelatedContent.Models
 {
     public class RelatedContentPart : ContentPart
     {
+        public string CollectionDisplayShape { get { return this.Retrieve(x => x.CollectionDisplayShape); } set { this.Store(x => x.CollectionDisplayShape, value); } }
+
         public string RelatedContentJson { get { return this.Retrieve(x => x.RelatedContentJson); } set { this.Store(x => x.RelatedContentJson, value); } }
 
         public IList<RelatedContentDto> RelatedContentDtos
