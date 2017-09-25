@@ -10,3 +10,4 @@ Features:
         Name: Related Content
         Description: Adds a part which lets you specify related content items for a content item.
         Category: Content
+        Dependencies: Orchard.ContentPicker

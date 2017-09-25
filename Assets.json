@@ -1,0 +1,14 @@
+﻿[
+  {
+    "inputs": [
+      "Assets/js/relatedcontent.admin.js"
+    ],
+    "output": "Scripts/relatedcontent.admin.js"
+  },
+  {
+    "inputs": [
+      "Assets/less/relatedcontent.admin.less"
+    ],
+    "output": "Styles/relatedcontent.admin.css"
+  }
+]
