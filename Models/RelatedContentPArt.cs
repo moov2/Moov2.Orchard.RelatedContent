@@ -10,10 +10,35 @@ namespace Moov2.Orchard.RelatedContent.Models
 {
     public class RelatedContentPart : ContentPart
     {
-        public string CollectionDisplayShape { get { return this.Retrieve(x => x.CollectionDisplayShape); } set { this.Store(x => x.CollectionDisplayShape, value); } }
-
+        #region Part Stored Properties
         public string RelatedContentJson { get { return this.Retrieve(x => x.RelatedContentJson); } set { this.Store(x => x.RelatedContentJson, value); } }
+        #endregion
 
+        #region Settings
+        public string CollectionDisplayShape
+        {
+            get
+            {
+                return Settings.GetModel<RelatedContentTypeSettings>()?.CollectionDisplayShape;
+            }
+        }
+
+        public string RelatedContentTypes
+        {
+            get
+            {
+                if (Settings.GetModel<RelatedContentTypeSettings>()?.RestrictItemContentTypes ?? false)
+                    return Settings.GetModel<RelatedContentTypeSettings>().RestrictedItemContentTypes;
+                return null;
+            }
+        }
+        #endregion
+
+        #region Handler Loaded
+        public IList<ContentItem> RelatedItems { get; set; }
+        #endregion
+
+        #region Helpers
         public IList<RelatedContentDto> RelatedContentDtos
         {
             get
@@ -40,20 +65,10 @@ namespace Moov2.Orchard.RelatedContent.Models
             }
         }
 
-        public IList<ContentItem> RelatedItems { get; set; }
-        public string RelatedContentTypes
-        {
-            get
-            {
-                if (Settings.GetModel<RelatedContentTypeSettings>()?.RestrictItemContentTypes ?? false)
-                    return Settings.GetModel<RelatedContentTypeSettings>().RestrictedItemContentTypes;
-                return null;
-            }
-        }
-
         public ContentItem GetItemForDto(RelatedContentDto dto)
         {
             return RelatedItems?.FirstOrDefault(x => x.Id == dto.ContentItemId);
         }
+        #endregion
     }
 }

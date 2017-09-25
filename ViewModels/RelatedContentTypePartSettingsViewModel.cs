@@ -8,5 +8,6 @@ namespace Moov2.Orchard.RelatedContent.ViewModels
         public IList<ContentTypeDefinition> AvailableItemContentTypes { get; set; }
         public bool RestrictItemContentTypes { get; set; }
         public IList<string> RestrictedItemContentTypes { get; set; }
+        public string CollectionDisplayShape { get; set; }
     }
 }

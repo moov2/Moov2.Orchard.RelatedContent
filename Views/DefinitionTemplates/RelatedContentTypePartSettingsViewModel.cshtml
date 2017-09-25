@@ -18,3 +18,9 @@
         </div>
     </fieldset>
 }
+
+<fieldset>
+    @Html.LabelFor(m => m.CollectionDisplayShape, T("Collection Display Shape"))
+    @Html.TextBoxFor(m => m.CollectionDisplayShape, new { @class = "text-long" })
+    <p class="hint">Name of a shape to use in place of 'List' for displaying the collection of related items</p>
+</fieldset>

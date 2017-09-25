@@ -33,6 +33,7 @@ namespace Moov2.Orchard.RelatedContent.Settings
 
             var viewModel = new RelatedContentTypePartSettingsViewModel
             {
+                CollectionDisplayShape = model.CollectionDisplayShape,
                 RestrictedItemContentTypes = _contentDefinitionManager.ParseContentTypeDefinitions(model.RestrictedItemContentTypes).Select(x => x.Name).ToList(),
                 RestrictItemContentTypes = model.RestrictItemContentTypes,
                 AvailableItemContentTypes = GetRelatableTypes()
@@ -51,6 +52,7 @@ namespace Moov2.Orchard.RelatedContent.Settings
                 AvailableItemContentTypes = _contentDefinitionManager.ListTypeDefinitions().ToList()
             };
             updateModel.TryUpdateModel(viewModel, "RelatedContentTypePartSettingsViewModel", null, new[] { "AvailableItemContentTypes" });
+            builder.WithSetting("RelatedContentTypeSettings.CollectionDisplayShape", viewModel.CollectionDisplayShape);
             builder.WithSetting("RelatedContentTypeSettings.RestrictedItemContentTypes", viewModel.RestrictedItemContentTypes != null ? string.Join(",", viewModel.RestrictedItemContentTypes) : "");
             builder.WithSetting("RelatedContentTypeSettings.RestrictItemContentTypes", viewModel.RestrictItemContentTypes.ToString());
             yield return DefinitionTemplate(viewModel);
@@ -62,6 +64,6 @@ namespace Moov2.Orchard.RelatedContent.Settings
         {
             return _contentDefinitionManager.ListTypeDefinitions().Where(x => !x.Settings.ContainsKey("Stereotype") || x.Settings["Stereotype"] == null).ToList();
         }
-#endregion
+        #endregion
     }
 }
