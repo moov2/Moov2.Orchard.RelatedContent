@@ -33,26 +33,29 @@
             </div>
         </div>
 
-        <div class="contentItems bulk-items js-related-contents-links-list-container" @(relatedContentDtos.Count == 0 ? "style=display:none;" : "")>
+        <div class="contentItems bulk-items js-related-contents-links-list-container" @(relatedContentDtos == null || relatedContentDtos.Count == 0 ? "style=display:none;" : "")>
             <ul class="js-related-contents-links-list">
-                @foreach (RelatedContentDto relatedContentLink in relatedContentDtos)
-            {
-                var contentItem = Model.GetItemForDto(relatedContentLink);
-                    <li @((relatedContentDtos.IndexOf(relatedContentLink) + 1) == relatedContentDtos.Count ? "class=last" : "")>
-                        <div class="summary">
-                            <div class="properties">
-                                <h3>@relatedContentLink.Label</h3>
-                                @if (contentItem != null)
-                                {
-                                    <text> - </text>@Html.ItemDisplayLink(relatedContentLink.ItemTitle, contentItem, new { target = "_blank" })
-                                }
+                @if (relatedContentDtos != null)
+                {
+                    foreach (RelatedContentDto relatedContentLink in relatedContentDtos)
+                    {
+                        var contentItem = Model.GetItemForDto(relatedContentLink);
+                        <li @((relatedContentDtos.IndexOf(relatedContentLink) + 1) == relatedContentDtos.Count ? "class=last" : "")>
+                            <div class="summary">
+                                <div class="properties">
+                                    <h3>@relatedContentLink.Label</h3>
+                                    @if (contentItem != null)
+                                    {
+                                        <text> - </text>@Html.ItemDisplayLink(relatedContentLink.ItemTitle, contentItem, new { target = "_blank" })
+                                    }
+                                </div>
+                                <div class="related">
+                                    <a href="#" data-index="@relatedContentDtos.IndexOf(relatedContentLink)" class="js-edit-related-content">Edit</a> |
+                                    <a href="#" data-index="@relatedContentDtos.IndexOf(relatedContentLink)" class="js-remove-related-content">Delete</a>
+                                </div>
                             </div>
-                            <div class="related">
-                                <a href="#" data-index="@relatedContentDtos.IndexOf(relatedContentLink)" class="js-edit-related-content">Edit</a> |
-                                <a href="#" data-index="@relatedContentDtos.IndexOf(relatedContentLink)" class="js-remove-related-content">Delete</a>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    }
                 }
             </ul>
         </div>
